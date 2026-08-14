@@ -8,7 +8,9 @@ int main()
     numericalTypes();
     fixedInts();
     fastleastInts();
-    void decimalTypes();
+    decimalTypes();
+    bools();
+    charStrings();
 
     std::cout << "\n";
     return 0;

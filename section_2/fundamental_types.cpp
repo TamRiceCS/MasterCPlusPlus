@@ -1,5 +1,7 @@
 #include <iostream>
+#include <iomanip>
 #include <cstdint>
+#include <string>
 
 void numericalTypes()
 {
@@ -93,9 +95,43 @@ void decimalTypes()
     float decimal4bytes = 1.23;
     double decimal8bytes = 4.56;
     long double decimalAnybytes = 7.89; // Don't use long no set size (8, 12, or 16)
+    float zeroDecimal = 1.000;
 
-    std::cout << "Here are the sizes of decimal variables..." << std::endl;
+    std::cout << "\nHere are the sizes of decimal variables..." << std::endl;
     std::cout << "\t* floats: " << sizeof(decimal4bytes) * 8 << std::endl;
     std::cout << "\t* doubles: " << sizeof(decimal8bytes) * 8 << std::endl;
     std::cout << "\t* long doubles: " << sizeof(decimalAnybytes) * 8 << std::endl;
+
+    auto old_flags = std::cout.flags(); // save pre-precision settings
+    // 0 decimal component won't be printed unless precision is set...
+    std::cout << "\nThe number of the day is: " << zeroDecimal << std::endl;
+    // Need iomanip to work, need to set fixed for setprecision to work
+    std::cout << "Print the hidden decimal: " << std::fixed << std::setprecision(3) << zeroDecimal << std::endl;
+    std::cout.flags(old_flags);
+    std::cout << "Same as it ever was... " << zeroDecimal << std::endl;
+}
+
+void bools()
+{
+    std::cout << "\nBooleans can only take..." << std::endl;
+    std::cout << "\t* true / false keywords" << std::endl;
+    std::cout << "\t* 0 / 1" << std::endl;
+}
+
+void charsStrings()
+{
+    char firstInitial = 'T';
+    char lastInitial = 82; // chars are number indexed in ascii table, not preferred
+    // escape sequences https://en.cppreference.com/cpp/language/escape
+    std::cout << "\nChars can be given a letter or a number in ascii range: " << firstInitial;
+    std::cout << " " << lastInitial << std::endl;
+}
+
+void typeConversion()
+{
+    // static-cast
+    int num = static_cast<int>('a');
+    char letter = 'a';
+    // c-style
+    int example = (int)letter;
 }
