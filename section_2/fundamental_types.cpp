@@ -102,13 +102,22 @@ void decimalTypes()
     std::cout << "\t* doubles: " << sizeof(decimal8bytes) * 8 << std::endl;
     std::cout << "\t* long doubles: " << sizeof(decimalAnybytes) * 8 << std::endl;
 
-    auto old_flags = std::cout.flags(); // save pre-precision settings
+    auto old_flags = std::cout.flags();    // save pre-precision settings
+    auto old_prec = std::cout.precision(); // needed to reset flags
+
     // 0 decimal component won't be printed unless precision is set...
     std::cout << "\nThe number of the day is: " << zeroDecimal << std::endl;
     // Need iomanip to work, need to set fixed for setprecision to work
     std::cout << "Print the hidden decimal: " << std::fixed << std::setprecision(3) << zeroDecimal << std::endl;
     std::cout.flags(old_flags);
+    std::cout.precision(old_prec);
     std::cout << "Same as it ever was... " << zeroDecimal << std::endl;
+}
+
+void floatRounding(float a, float b)
+{
+    std::cout << "Absolute Rounding: ";
+    std::cout << "Relative Rounding: ";
 }
 
 void bools()
@@ -118,13 +127,42 @@ void bools()
     std::cout << "\t* 0 / 1" << std::endl;
 }
 
-void charsStrings()
+void charStrings()
 {
     char firstInitial = 'T';
     char lastInitial = 82; // chars are number indexed in ascii table, not preferred
     // escape sequences https://en.cppreference.com/cpp/language/escape
     std::cout << "\nChars can be given a letter or a number in ascii range: " << firstInitial;
     std::cout << " " << lastInitial << std::endl;
+
+    // strings, can be a char array that ends in \0 (null char) or use string (must import)
+    std::string firstName = "Tamara";
+    char lastName[5] = "Rice"; // implied null terminated, MAKE SURE IT'S NOT LOST
+    // char arrays are also called C-style strings
+
+    std::cout << "My first name is: " << firstName << std::endl;
+    std::cout << "My last name is: " << lastName << std::endl;
+
+    int index = 0;
+
+    while (lastName[index] != '\0')
+    {
+        std::cout << lastName[index++] << " ";
+    }
+    std::cout << "\n";
+
+    std::cout << "\nString manipulation shorthands (common ones): " << std::endl;
+    std::cout << "\tA float: " << 1.23456f << std::endl;
+
+    // Do NOT pass strings by value, pass by reference - string copies are expensive
+    // For the same reason, try not to return strings as well.
+
+    std::string_view nameLook = firstName; // basically a name pointer, but can only read not write
+    std::cout << nameLook << std::endl;
+    firstName = "Mara";
+    std::cout << "string view is not updated and will react strangely... " << nameLook << std::endl;
+    nameLook = firstName; // fixes weird read
+    // Do not return string views!
 }
 
 void typeConversion()
