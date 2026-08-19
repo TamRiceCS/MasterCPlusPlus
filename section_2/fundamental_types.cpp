@@ -116,8 +116,44 @@ void decimalTypes()
 
 void floatRounding(float a, float b)
 {
-    std::cout << "Absolute Rounding: ";
-    std::cout << "Relative Rounding: ";
+    std::cout << "Absolute Rounding: " << std::endl;
+    std::cout << "\tLet's say that we will only allow a .001 difference between 2 values for equality...";
+    std::cout << "\n";
+
+    if (abs(a - b) < .001)
+    {
+        std::cout << "With absolute comparison, they are equal..." << std::endl;
+    }
+    else
+    {
+        std::cout << "Absolutely, they are not equal..." << std::endl;
+    }
+
+    std::cout << "\nRelative Rounding: " << std::endl;
+    std::cout << "\tLet's normalize the difference to be relative, then see if they are equal..." << std::endl;
+    std::cout << "\tWe'll do this via a really small epsilon of 0.00001..." << std::endl;
+    int difference = abs(a - b);
+    int larger = (a > b) ? a : b;
+
+    if (abs(a - b) <= larger * 0.00001)
+    {
+        std::cout << "With relative comparison, they are equal..." << std::endl;
+    }
+    else
+    {
+        std::cout << "Relatively, they are not equal." << std::endl;
+    }
+
+    std::cout << "\nJust direct comparison: " << std::endl;
+
+    if (a == b)
+    {
+        std::cout << "With direct comparison, they are equal..." << std::endl;
+    }
+    else
+    {
+        std::cout << "Directly, they are not equal..." << std::endl;
+    }
 }
 
 void bools()

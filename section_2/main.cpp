@@ -33,6 +33,11 @@ int main()
     howIf(-3);
 
     std::cout << "\n";
+    floatRounding(2.896, 2.89601);
+
+    std::cout
+        << "\n";
+
     return 0;
 }
 
