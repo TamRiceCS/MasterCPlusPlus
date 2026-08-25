@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <string>
 
+// All of the functions in this file are extern by default, can be seen and used upon being imported
+
 void numericalTypes()
 {
     std::cout << "\nBasic Integer types: their size and range..." << std::endl;
@@ -208,4 +210,28 @@ void typeConversion()
     char letter = 'a';
     // c-style
     int example = (int)letter;
+}
+
+void bitOperations(int given)
+{
+    int shift = given;
+    std::cout << "\nGiven Value is: " << given << std::endl;
+    shift = (given << 1);
+    std::cout << "Shift left by 1: " << shift << std::endl;
+    shift = (given >> 1);
+    std::cout << "Shift right by 1: " << shift << std::endl;
+    shift = (given << 1);
+
+    // vice versa will not reverse affects of shift...
+    shift = given;
+    std::cout << "\nGiven Value is: " << given << std::endl;
+    shift = (given >> 1);
+    std::cout << "Shift right by 1: " << shift << std::endl;
+    shift = (given << 1);
+    std::cout << "Shift left by 1: " << shift << std::endl;
+
+    std::cout << "Bitwise not: " << (~given) << std::endl;
+    std::cout << "Bitwise and (&), " << given << " & " << shift << ": " << (given & shift) << std::endl;
+    std::cout << "Bitwise or (|), " << given << " | " << shift << ": " << (given | shift) << std::endl;
+    std::cout << "Bitwise xOR (^), " << given << " ^ " << shift << ": " << (given ^ shift) << std::endl;
 }
