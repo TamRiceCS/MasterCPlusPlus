@@ -4,7 +4,6 @@
 #include <string>
 
 // All of the functions in this file are extern by default, can be seen and used upon being imported
-
 void numericalTypes()
 {
     std::cout << "\nBasic Integer types: their size and range..." << std::endl;

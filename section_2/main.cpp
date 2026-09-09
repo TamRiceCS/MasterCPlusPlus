@@ -7,6 +7,7 @@
 // Be careful to not use non-const / non-constexp global vars, helps prevent unexpected behavior
 constexpr int running = 1; // value is known at compilation, faster
 constexpr int alwaysKnown();
+int g_example; // can init this here because extern use in header
 
 // Useful to prevent name collisions (like a lastname), must be global
 // Namespaces can be unnamed (unanonymous), useful to make global variables static (unusuable outside file)
@@ -91,6 +92,22 @@ int main()
     std::cout << "gravity is a great candidate for this: " << newName::g_gravity;
 
     // type does not exist here, out of scope
+
+    g_example = 1234; // give extern global var a value here
+
+    switchItUp(1);
+    switchItUp(3);
+    switchItUp(20);
+
+    whileCounting(5);
+    whileCounting(-3);
+
+    whatFor(0);
+    whatFor(5);
+
+    breakContinue();
+
+    halts();
 
     std::cout
         << "\n";

@@ -30,3 +30,144 @@ void howIf(int round)
     // All conditional operators >, <, >=, <=, and ==
     // Logical Operators !(not), &&(and), ||(or)
 }
+
+void switchItUp(int button)
+{
+    std::cout << "\nExample of fall through: " << std::endl;
+    switch (button)
+    {
+    case 1:
+        std::cout << "Boop ";
+
+    case 2:
+        std::cout << "Beep ";
+    case 3:
+        std::cout << "Bop ";
+    case 4:
+        std::cout << "Meep ";
+    case 5:
+        std::cout << "Moop ";
+    case 6:
+        std::cout << "Mop ";
+    default:
+    {
+        std::cout << "I'm a robot..." << std::endl;
+        break;
+    }
+    }
+
+    std::cout << "Example w/o fall through" << std::endl;
+    switch (button)
+    {
+    case 1:
+    {
+        std::cout << "One has a bun" << std::endl;
+        break;
+    }
+    case 2:
+    {
+        std::cout << "Two says who?" << std::endl;
+        break;
+    }
+    case 3:
+    {
+        std::cout << "Three climbed a tree" << std::endl;
+        break;
+    }
+    case 4:
+    {
+        std::cout << "Four thinks you're a bore" << std::endl;
+        break;
+    }
+    }
+}
+
+void whileCounting(int number)
+{
+    int countDown = number;
+    std::cout << "\nCount down to 0..." << std::endl;
+
+    std::cout << "\tdo-while: ";
+    do
+    {
+        std::cout << countDown-- << " ";
+    } while (countDown > 0);
+
+    std::cout << "\n\twhile: ";
+    countDown = number;
+    while (countDown > 0)
+    {
+        std::cout << countDown-- << " ";
+    }
+
+    std::cout << "\n";
+}
+
+void whatFor(int number)
+{
+    std::cout << "\nCount down up to 10..." << std::endl;
+
+    for (int i = number; i <= 10; i++)
+    {
+        std::cout << i << " ";
+    }
+
+    std::cout << "\n";
+
+    // technically no part if the for loop is mandatory
+    for (int i = number;;)
+    {
+        std::cout << i << " ";
+        i++;
+        if (i > 10)
+        {
+            break;
+        }
+    }
+
+    for (;;)
+    {
+        std::cout << "\nYup even this is legal" << std::endl;
+        return;
+    }
+}
+
+void breakContinue()
+{
+    while (true)
+    {
+        std::cout << "\nThis can be an infinite loop" << std::endl;
+        break; // exits the current loop, in this case a while
+    }
+
+    for (int i = 0; i < 10; i++)
+    {
+        if (i % 2 == 0)
+        {
+            continue; // skip all code and move on to the next iteration
+        }
+        std::cout << i << " ";
+    }
+    std::cout << "\n";
+}
+
+void haltHelper()
+{
+    std::cout << "Doing some clean-up" << std::endl;
+}
+
+void halts()
+{
+    // Calling halts are bad practice, error handle instead.
+
+    std::cout << "This will output" << std::endl;
+
+    // Exit will call built-in clean-up functions
+    // std::exit(EXIT_SUCCESS);
+    // std::exit(EXIT_FAILURE);
+    // atexit(haltHelper); // will exit normally but now also call clean-up at end
+    // std::abort(); // Call when issue w/ continuing code, can not be ignoredd
+    // std::terminate(); // An exception is not handled, this will complain no exception is present
+
+    std::cout << "Nothing will output" << std::endl;
+}

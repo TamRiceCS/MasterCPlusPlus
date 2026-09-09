@@ -1,3 +1,5 @@
+extern int g_example; // tells compiler this exists, without making compiler mad at multi-definition
+
 void numericalTypes();
 void fixedInts();
 void fastleastInts();
