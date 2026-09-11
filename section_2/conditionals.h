@@ -4,3 +4,4 @@ void whileCounting(int number);
 void whatFor(int number);
 void breakContinue();
 void halts();
+void random();

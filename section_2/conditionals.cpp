@@ -1,4 +1,5 @@
 #include <iostream>
+#include <random>
 
 void howIf(int round)
 {
@@ -170,4 +171,18 @@ void halts()
     // std::terminate(); // An exception is not handled, this will complain no exception is present
 
     std::cout << "Nothing will output" << std::endl;
+}
+
+void random() // Can be interesting to investigate more w/ advanced statistics
+{
+    std::mt19937 mt{std::random_device{}()};  // get a random seed from OS random device
+    std::uniform_int_distribution die6{1, 6}; // uses a stat distribution where every # has an equal chance
+    std::cout << "\nRandomness" << std::endl;
+
+    for (int i = 0; i < 10; i++)
+    {
+        std::cout << "\nNo range random: " << mt() << " ";
+        std::cout << "Random w/ range: " << die6(mt) << " ";
+        std::cout << "Random w/ range via %: " << mt() % 6;
+    }
 }

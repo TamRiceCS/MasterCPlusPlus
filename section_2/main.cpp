@@ -108,6 +108,7 @@ int main()
     breakContinue();
 
     halts();
+    random();
 
     std::cout
         << "\n";
