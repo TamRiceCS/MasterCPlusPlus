@@ -3,6 +3,10 @@
 #include <cstdint>
 #include <string>
 
+using DinoNug = int; // alias for the type int, still acts as an int but new name
+// prefer using keyword to create type aliases but typedef was used in the past
+// typdef int DinoNug
+
 // All of the functions in this file are extern by default, can be seen and used upon being imported
 void numericalTypes()
 {
@@ -233,4 +237,44 @@ void bitOperations(int given)
     std::cout << "Bitwise and (&), " << given << " & " << shift << ": " << (given & shift) << std::endl;
     std::cout << "Bitwise or (|), " << given << " | " << shift << ": " << (given | shift) << std::endl;
     std::cout << "Bitwise xOR (^), " << given << " ^ " << shift << ": " << (given ^ shift) << std::endl;
+}
+
+void typeConversions()
+{
+    std::cout << "\n\nNumeric Promotion: " << std::endl;
+    int value = 100;
+    uint16_t convertValue = value;
+    std::cout << "\tint -> unsigned int" << std::endl;
+
+    std::cout << "Numeric Conversions: " << std::endl;
+    int number = 200;
+    float wee = number;
+    double woo = number;
+    long waa = number;
+    // there are more than the above examples
+    std::cout << "\tAll other numeric conversions" << std::endl;
+
+    std::cout << "Qualification:" << std::endl;
+    std::cout << "\tAdd / Remove Const or Volatile" << std::endl;
+
+    const int forever = 10101;
+    int actually = forever;
+    actually = -1;
+
+    // Taking a lvalue and using it to define a rvalue variable is a value transformation
+
+    std::cout << "\nC-Style Convert: " << (int)1.281 << std::endl;
+    std::cout << "Static-Cast: " << static_cast<int>(1.281) << std::endl; // prefer this one
+
+    DinoNug brachiosaurus = 8; // just an int!
+
+    // The auto keyword, the ultimate guesser
+    auto dalmations = 101;
+    auto fanChant = "Hey Hey, Ho Ho, They Have got to GO!";
+    auto copyForever = forever;
+    // auto undefined; // Not allowed, no info to guess from
+
+    std::cout << "Types: " << typeid(dalmations).name() << " " << typeid(fanChant).name();
+    std::cout << " " << typeid(copyForever).name() << std::endl;
+    // Will output int, Pointer Constant Char, and int
 }

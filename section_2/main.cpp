@@ -110,6 +110,8 @@ int main()
     halts();
     random();
 
+    typeConversions();
+
     std::cout
         << "\n";
 

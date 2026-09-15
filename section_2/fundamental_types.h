@@ -8,3 +8,4 @@ void bools();
 void charStrings();
 void floatRounding(float a, float b);
 void bitOperations(int given);
+void typeConversions();
