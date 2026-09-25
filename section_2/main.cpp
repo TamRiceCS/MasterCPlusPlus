@@ -13,6 +13,16 @@ int g_example; // can init this here because extern use in header
 // Namespaces can be unnamed (unanonymous), useful to make global variables static (unusuable outside file)
 // const / constexpr global variables are static by default
 
+auto genericFunc() // function parameters can't be auto, can't be forward defined
+{                  // all return type must be the same
+    return true;
+}
+
+auto trailingFunc() -> int
+{ // trailing type, useful when the return type is nasty so name isn't obscured
+    return true;
+}
+
 namespace FunctionSpace // Start w/ a capital letter
 {
     const float g_gravity = 9.8; // gravity does not change
