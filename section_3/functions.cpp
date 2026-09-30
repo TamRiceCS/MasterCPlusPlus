@@ -22,15 +22,17 @@ std::string add(char a, char b)
     returnable += b;
     return returnable;
 }
+
+// will not allow this function header to be called
 float add(float a, float b) = delete;
 
 void echo(std::string phrase = "echo")
 {
-    std::cout << phrase << std::endl;
+    std::cout << "\t" << phrase << std::endl;
 }
-
-void repeat(std::string phrase, int number = 1)
+void repeat(std::string phrase, int number)
 {
+    std::cout << "\t";
     for (int i = 0; i < number - 1; i++)
     {
         std::cout << phrase << " ";
@@ -39,4 +41,8 @@ void repeat(std::string phrase, int number = 1)
     {
         std::cout << phrase << std::endl;
     }
+}
+int multiply(int a, int b, int c)
+{
+    return a * b * c;
 }
