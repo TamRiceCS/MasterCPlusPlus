@@ -1,5 +1,6 @@
 #include <iostream>
 #include "functions.h"
+#include "pointersNref.h"
 
 bool oppositeDay(bool fact = false); // declare default values in forward declaration, can't do both
 
@@ -38,7 +39,32 @@ int main()
 
     report<int, bool>(1, false);
     report<int, int>(1, 2);
+    std::cout << "non-type template parameter function: ";
     yolo<'t'>();
+    std::cout << "constexpr func: " << divide(20, 5) << std::endl;
+
+    std::cout
+        << "\n";
+
+    int tam = 25;
+    int you = 30;
+    int &dopple = tam; // now the same object as tam
+    const int days = 115;
+    const int &sameDays = days;
+    int *tamPtr = &tam; // points to the tam object
+    const int *unchangeTam = tamPtr;
+
+    references(tam, you);
+    std::cout << "After the function decade I am: " << tam << " and you are: " << you << std::endl;
+    dopple -= 10;
+    std::cout << "Let's use a doppleganger to deage me: " << tam << std::endl;
+
+    std::cout << "\n";
+    pointers(tamPtr, you);
+    std::cout << "After the function century I am: " << tam << " (" << *tamPtr << ") and you are: ";
+    std::cout << you << std::endl;
+    (*tamPtr) -= 10;
+    std::cout << "Let's use the ptr to deage me again: " << tam << std::endl;
 
     std::cout
         << "\n";

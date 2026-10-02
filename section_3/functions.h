@@ -31,3 +31,17 @@ void yolo()
 {
     std::cout << l << '\n'; // use value of N here
 }
+
+// pass constexpr functions consts, everything must be known at compile time
+constexpr int divide(const int a, const int b)
+{
+
+    int c = add(a, b);
+    // can call non-constexpr functions, this is bad will only work @ runtime not compilation
+    if (b != 0)
+    {
+        return (a / b);
+    }
+
+    return INT_MIN;
+}
