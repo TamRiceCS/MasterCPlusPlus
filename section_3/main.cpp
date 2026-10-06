@@ -1,6 +1,7 @@
 #include <iostream>
 #include "functions.h"
 #include "pointersNref.h"
+#include "classEnumStruct.h"
 
 bool oppositeDay(bool fact = false); // declare default values in forward declaration, can't do both
 
@@ -65,6 +66,25 @@ int main()
     std::cout << you << std::endl;
     (*tamPtr) -= 10;
     std::cout << "Let's use the ptr to deage me again: " << tam << std::endl;
+
+    std::cout << "\n";
+    SolarSystem::Planets favPlanet = SolarSystem::Planets::Earth;
+    SailorMoon::SailorScouts favScout = SailorMoon::SailorScouts::Mercury;
+    enumPrefs(favPlanet, favScout);
+    Basic person = Basic{};
+    person.haveBDay();
+    person.introduce();
+    Basic fren{"Adam", "Beigel", 26};
+    fren.haveBDay();
+    fren.introduce();
+    Basic *refFren = &fren;
+    refFren->LName = "B";
+    refFren->introduce();
+    QuadData<int> nums{1, 2, 3, 4};
+    QuadData<char> letters{'a', 'b', 'c', 'd'};
+    QuadData<int> yikes{};
+    nums.output();
+    yikes.output();
 
     std::cout
         << "\n";
