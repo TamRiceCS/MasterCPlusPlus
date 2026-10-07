@@ -85,7 +85,16 @@ int main()
     QuadData<int> yikes{};
     nums.output();
     yikes.output();
+    QuadData<char> *lettersPtr = &letters;
+    lettersPtr->output();
 
+    std::cout
+        << "\n";
+
+    SomeProj myProj;
+    myProj.aboutProject();
+    SomeProj friendProj(1.0, "Temp Project", "You", "Today");
+    friendProj.aboutProject();
     std::cout
         << "\n";
 

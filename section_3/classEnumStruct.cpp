@@ -64,3 +64,11 @@ void enumPrefs(SolarSystem::Planets favPlanet, SailorMoon::SailorScouts favScout
 {
     std::cout << "Given Fav Planet: " << favPlanet << " and Fav Sailor Scout. " << favScout << std::endl;
 }
+
+void SomeProj::aboutProject() const // cant edit
+{
+    std::cout << "\n"
+              << projName << " by " << author << std::endl;
+    std::cout << "Last Edited On: " << lastEditDate << std::endl;
+    std::cout << "Based off of notes from learncpp.com: " << associatedNotes << std::endl;
+}

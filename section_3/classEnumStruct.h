@@ -1,4 +1,5 @@
 #include <string>
+#pragma once
 // If the enums were not defined in namespaces, there woild be collisions from similar names
 
 namespace SailorMoon
@@ -60,6 +61,8 @@ struct Basic
     }
 };
 
+void enumPrefs(SolarSystem::Planets favPlanet, SailorMoon::SailorScouts favScout);
+
 template <typename Data>
 struct QuadData
 {
@@ -75,4 +78,30 @@ struct QuadData
     }
 };
 
-void enumPrefs(SolarSystem::Planets favPlanet, SailorMoon::SailorScouts favScout);
+class SomeProj
+{
+public:
+    static int seen;           // does not belong to class is global, just in its domain
+    void aboutProject() const; // can't edit data members
+    friend void lastEditChange(std::string update);
+    friend void updateLink(std::string update);
+    SomeProj() = default;                // explicitly get an empty constructor
+    SomeProj(float pVer) : version{pVer} // can quickly define member data here, no this ptr
+    {
+    }
+    SomeProj(int version, std::string pName, std::string author, std::string create, std::string link = "None")
+    {
+        this->version = version; // use this keyword to unshadow
+        projName = pName;
+        this->author = author;
+        lastEditDate = create;
+        associatedNotes = link;
+    }
+
+private: // implicitly private if public is not declared
+    float version = 0.0;
+    std::string projName = "Relearn C++ deeply";
+    std::string author = "Tamara Rice";
+    std::string lastEditDate = "10/6/26";
+    std::string associatedNotes = "Google Docs Link";
+};
