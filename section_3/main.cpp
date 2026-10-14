@@ -91,10 +91,14 @@ int main()
     std::cout
         << "\n";
 
-    SomeProj myProj;
+    SomeProj myProj; // uses default
     myProj.aboutProject();
-    SomeProj friendProj(1.0, "Temp Project", "You", "Today");
+    const SomeProj friendProj(1.0, "Temp Project", "Friend", "Today");
     friendProj.aboutProject();
+    SomeProj finalProj(1.0, "Today");
+    finalProj.aboutProject();
+    // SomeProj illegal = myProj; // Making a copy is illegal
+    exampleExplicitConvert({1.0, "Temp Project", "Friend", "Today"});
     std::cout
         << "\n";
 

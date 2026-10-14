@@ -61,7 +61,7 @@ struct Basic
     }
 };
 
-void enumPrefs(SolarSystem::Planets favPlanet, SailorMoon::SailorScouts favScout);
+void enumPrefs(const SolarSystem::Planets &favPlanet, const SailorMoon::SailorScouts &favScout);
 
 template <typename Data>
 struct QuadData
@@ -81,22 +81,31 @@ struct QuadData
 class SomeProj
 {
 public:
-    static int seen;           // does not belong to class is global, just in its domain
-    void aboutProject() const; // can't edit data members
-    friend void lastEditChange(std::string update);
-    friend void updateLink(std::string update);
-    SomeProj() = default;                // explicitly get an empty constructor
-    SomeProj(float pVer) : version{pVer} // can quickly define member data here, no this ptr
+    static int seen;                                       // does not belong to class is global, just in its domain
+    void aboutProject() const;                             // can't edit data members, const class instances can call this
+    friend void lastEditChange(std::string update);        // another class can use this function
+    friend void updateLink(std::string update);            // another class can use this function
+    explicit SomeProj() = default;                         // explicitly get an empty constructor
+    explicit SomeProj(const SomeProj &storeCopy) = delete; // no copies
+    explicit SomeProj(float pVer) : version{pVer}          // can quickly define member data here, no this ptr
     {
+        std::cout << "\n***Only version constructor" << std::endl;
     }
-    SomeProj(int version, std::string pName, std::string author, std::string create, std::string link = "None")
+    // explicit keyword disallows this to be used to convert
+    explicit SomeProj(float version, std::string date) : SomeProj{version, "Generic Name", "No Author", date}
+    {
+        std::cout << "\n***Delegating constructor" << std::endl;
+    }
+    SomeProj(float version, std::string pName, std::string author, std::string create, std::string link = "None")
     {
         this->version = version; // use this keyword to unshadow
         projName = pName;
         this->author = author;
         lastEditDate = create;
         associatedNotes = link;
+        std::cout << "\n***Full parameter list constructor" << std::endl;
     }
+    ~SomeProj() = default; // explicitly call the destructor, no need to define one here
 
 private: // implicitly private if public is not declared
     float version = 0.0;
@@ -105,3 +114,5 @@ private: // implicitly private if public is not declared
     std::string lastEditDate = "10/6/26";
     std::string associatedNotes = "Google Docs Link";
 };
+
+void exampleExplicitConvert(const SomeProj &obj);

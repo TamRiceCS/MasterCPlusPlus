@@ -60,7 +60,7 @@ std::ostream &operator<<(std::ostream &out, SailorMoon::SailorScouts base)
     out << returnScout(base);
     return out;
 }
-void enumPrefs(SolarSystem::Planets favPlanet, SailorMoon::SailorScouts favScout)
+void enumPrefs(const SolarSystem::Planets &favPlanet, const SailorMoon::SailorScouts &favScout)
 {
     std::cout << "Given Fav Planet: " << favPlanet << " and Fav Sailor Scout. " << favScout << std::endl;
 }
@@ -71,4 +71,9 @@ void SomeProj::aboutProject() const // cant edit
               << projName << " by " << author << std::endl;
     std::cout << "Last Edited On: " << lastEditDate << std::endl;
     std::cout << "Based off of notes from learncpp.com: " << associatedNotes << std::endl;
+}
+
+void exampleExplicitConvert(const SomeProj &obj)
+{
+    std::cout << "It worked!" << std::endl;
 }
