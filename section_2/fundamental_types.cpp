@@ -2,16 +2,17 @@
 #include <iomanip>
 #include <cstdint>
 #include <string>
+#include "fundamental_types.h"
 
-using DinoNug = int; // alias for the type int, still acts as an int but new name
-// prefer using keyword to create type aliases but typedef was used in the past
-// typdef int DinoNug
+using DinoNug = int; // Alias for the type int, still acts as an int but new name
+// Prefer using keyword to create type aliases but typedef was used in the past
+// typdef int DinoNug // this how to do it with typedef
 
 // All of the functions in this file are extern by default, can be seen and used upon being imported
 void numericalTypes()
 {
     std::cout << "\nBasic Integer types: their size and range..." << std::endl;
-    // Can slap int in front of short, long, and long long, don't
+    // Can slap int behind (short, long, and long long), don't
     short int wrorngShort = 1;
     short rightShort = 22;
     int basicInt = 333;
@@ -97,9 +98,9 @@ void fastleastInts()
 
 void decimalTypes()
 {
-    float decimal4bytes = 1.23;
+    float decimal4bytes = 1.23; // Float is the gold standard
     double decimal8bytes = 4.56;
-    long double decimalAnybytes = 7.89; // Don't use long no set size (8, 12, or 16)
+    long double decimalAnybytes = 7.89; // Don't use long double no set size (8, 12, or 16)
     float zeroDecimal = 1.000;
 
     std::cout << "\nHere are the sizes of decimal variables..." << std::endl;
@@ -107,8 +108,8 @@ void decimalTypes()
     std::cout << "\t* doubles: " << sizeof(decimal8bytes) * 8 << std::endl;
     std::cout << "\t* long doubles: " << sizeof(decimalAnybytes) * 8 << std::endl;
 
-    auto old_flags = std::cout.flags();    // save pre-precision settings
-    auto old_prec = std::cout.precision(); // needed to reset flags
+    auto old_flags = std::cout.flags();    // Save pre-precision settings
+    auto old_prec = std::cout.precision(); // Needed to reset flags
 
     // 0 decimal component won't be printed unless precision is set...
     std::cout << "\nThe number of the day is: " << zeroDecimal << std::endl;
@@ -171,15 +172,17 @@ void bools()
 void charStrings()
 {
     char firstInitial = 'T';
-    char lastInitial = 82; // chars are number indexed in ascii table, not preferred
-    // escape sequences https://en.cppreference.com/cpp/language/escape
+    char lastInitial = 82; // Chars are number indexed in ascii table, not preferred
+    // Escape sequences https://en.cppreference.com/cpp/language/escape
     std::cout << "\nChars can be given a letter or a number in ascii range: " << firstInitial;
     std::cout << " " << lastInitial << std::endl;
 
-    // strings, can be a char array that ends in \0 (null char) or use string (must import)
+    // Strings, can be a char array that ends in \0 (null char) or use string (must import)
     std::string firstName = "Tamara";
-    char lastName[5] = "Rice"; // implied null terminated, MAKE SURE IT'S NOT LOST
-    // char arrays are also called C-style strings
+    char lastName[] = "Rice"; // Implied null terminated, MAKE SURE IT'S NOT LOST
+    char numLastName[5] = "Rice";
+    // Size is only the amount of chars present in the string
+    // Char arrays are also called C-style strings
 
     std::cout << "My first name is: " << firstName << std::endl;
     std::cout << "My last name is: " << lastName << std::endl;
@@ -198,20 +201,20 @@ void charStrings()
     // Do NOT pass strings by value, pass by reference - string copies are expensive
     // For the same reason, try not to return strings as well.
 
-    std::string_view nameLook = firstName; // basically a name pointer, but can only read not write
+    std::string_view nameLook = firstName; // Basically a name pointer, but can only read not write
     std::cout << nameLook << std::endl;
     firstName = "Mara";
     std::cout << "string view is not updated and will react strangely... " << nameLook << std::endl;
-    nameLook = firstName; // fixes weird read
+    nameLook = firstName; // Fixes weird read
     // Do not return string views!
 }
 
 void typeConversion()
 {
-    // static-cast
+    // Static-cast
     int num = static_cast<int>('a');
     char letter = 'a';
-    // c-style
+    // C-style
     int example = (int)letter;
 }
 
@@ -225,7 +228,7 @@ void bitOperations(int given)
     std::cout << "Shift right by 1: " << shift << std::endl;
     shift = (given << 1);
 
-    // vice versa will not reverse affects of shift...
+    // Vice versa will not reverse affects of shift...
     shift = given;
     std::cout << "\nGiven Value is: " << given << std::endl;
     shift = (given >> 1);
@@ -251,7 +254,7 @@ void typeConversions()
     float wee = number;
     double woo = number;
     long waa = number;
-    // there are more than the above examples
+    // There are more than the above examples
     std::cout << "\tAll other numeric conversions" << std::endl;
 
     std::cout << "Qualification:" << std::endl;
@@ -264,9 +267,9 @@ void typeConversions()
     // Taking a lvalue and using it to define a rvalue variable is a value transformation
 
     std::cout << "\nC-Style Convert: " << (int)1.281 << std::endl;
-    std::cout << "Static-Cast: " << static_cast<int>(1.281) << std::endl; // prefer this one
+    std::cout << "Static-Cast: " << static_cast<int>(1.281) << std::endl; // Prefer this one
 
-    DinoNug brachiosaurus = 8; // just an int!
+    DinoNug brachiosaurus = 8; // Just an int!
 
     // The auto keyword, the ultimate guesser
     auto dalmations = 101;

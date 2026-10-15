@@ -1,14 +1,15 @@
 // Variable Manipulation
 #include <iostream>
 #include <string>
+#include "varmanip.h" // Forward declare all functions
 
 void varInit()
 {
     // Every init given a value can use the keyword const
-    int defaultInit; // This will output something random, not defined
-    int copyInit = 1;
+    int defaultInit;       // This will output something random, not defined
+    int copyInit = 1;      // This is the one I was taught in school
     int directInit(2);     // Don't like, too function like
-    int directListInit{3}; // Don't like, curly brackets not a code block
+    int directListInit{3}; // Don't like, curly brackets not a code block -- it is the new standard
     int chain1 = 1, chain2 = 2, chain3 = 3;
 
     std::cout << "\nThis function has initialized a bunch of variables. They are..." << std::endl;
@@ -34,7 +35,6 @@ void varMath()
     std::cout << "Division remainder of " << num2 << " and " << num1 << ": " << num2 % num1 << std::endl;
 
     // Above are some basic math operations on variables, there are more such as binary math.
-    // Some not included are == (equality), << (insertion), and >> (extraction) - these are more relevant elsewhere
 
     // Unary operator is just the negative sign (-)
     // Binary operators act on two variables like the math operations above
@@ -85,8 +85,7 @@ int multiplyThree(int num1, int num2, int num3)
     return num1 * num2 * num3;
 }
 
-// All default values must be on the right
-int defaultMultiply(int num1, int num2 = 2)
+int defaultMultiply(int num1, int num2)
 {
     std::cout << num1 << " * " << num2 << ": " << num1 * num2 << std::endl;
     return num1 * num2;
@@ -99,9 +98,16 @@ void ignoreParam(int num1, int)
     std::cout << "I only care about " << num1 << std::endl;
 }
 
-// Don't worry about this much until later ptr section
-void passBy(int value, int *reference)
+// Don't worry about this much until later, it was briefly mentioned here
+void passBy(int value, int &reference)
 {
     std::cout << "This is just a copy and won't change the original: " << value << std::endl;
-    std::cout << "This will change the original it points to the memory: " << *reference << std::endl;
+    std::cout << "This will change the original it points to the memory: " << reference << std::endl;
+
+    value = 0;
+    reference = 0;
+
+    std::cout << "Let's zero out both parameters and see what happens outside." << std::endl;
 }
+
+void justStub();

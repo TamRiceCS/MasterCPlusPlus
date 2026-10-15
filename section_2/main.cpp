@@ -3,18 +3,14 @@
 #include "fundamental_types.h"
 #include "conditionals.h"
 
-// Do not return const types, prefer const macros
 // Be careful to not use non-const / non-constexp global vars, helps prevent unexpected behavior
-constexpr int running = 1; // value is known at compilation, faster
-constexpr int alwaysKnown();
-int g_example; // can init this here because extern use in header
-
-// Useful to prevent name collisions (like a lastname), must be global
-// Namespaces can be unnamed (unanonymous), useful to make global variables static (unusuable outside file)
 // const / constexpr global variables are static by default
+constexpr int running = 1; // Value is known at compilation, faster
+constexpr int alwaysKnown();
+int g_example; // Can init this here because extern use in header
 
-auto genericFunc() // function parameters can't be auto, can't be forward defined
-{                  // all return type must be the same
+auto genericFunc() // Function parameters can't be auto, can't be forward defined
+{                  // All return type must be the same in the body
     return true;
 }
 
@@ -23,9 +19,11 @@ auto trailingFunc() -> int
     return true;
 }
 
+// Useful to prevent name collisions (like a lastname), must be global
+// Namespaces can be unnamed (unanonymous), useful to make global variables static (unusuable outside file)
 namespace FunctionSpace // Start w/ a capital letter
 {
-    const float g_gravity = 9.8; // gravity does not change
+    const float g_gravity = 9.8; // Gravity does not change
     void repeatNTimes(std::string base, int times)
     {
         if (times == 0)
@@ -37,7 +35,7 @@ namespace FunctionSpace // Start w/ a capital letter
         std::cout << base << std::endl;
     }
 
-    namespace childSpace // nested namespaces are allowed
+    namespace childSpace // Nested namespaces are allowed
     {
         void giggle()
         {
@@ -78,19 +76,21 @@ int main()
 
     bitOperations(123);
 
-    {
+    { // Unspecific code blocks are allowed
         // type exists here
         int type = 1;
         std::cout << "\nCode blocks don't need to be named via a function or keyword." << std::endl;
         {
             // also exists here
             std::cout << "You can nest 'em like anyother block, try to keep nested blocks > 3" << std::endl;
-            int type = 3; // this local variable will shadow the outside variable
+            int type = 3; // This local variable will shadow the outside variable
             std::cout << "The most local variable w/ the same name will shadow all others, be careful: ";
             std::cout << type << std::endl;
         }
         // type exists here too
     }
+
+    // type does not exist here, out of scope
 
     std::cout << "\nUsing a namespace function: ";
     // Need to use resolution operator to define what scope to look in
@@ -101,9 +101,7 @@ int main()
     std::cout << "\nGlobal Variables in a namespace help prevent name collisions, ";
     std::cout << "gravity is a great candidate for this: " << newName::g_gravity;
 
-    // type does not exist here, out of scope
-
-    g_example = 1234; // give extern global var a value here
+    g_example = 1234; // Give extern global var a value here, can't do it in global
 
     switchItUp(1);
     switchItUp(3);

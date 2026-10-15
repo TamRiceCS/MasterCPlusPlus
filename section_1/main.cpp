@@ -5,9 +5,10 @@
 #include <iostream>   // input + output
 #include <stdio.h>    // needed for __function__
 #include "varmanip.h" // Copies forward declarations into this file, main.cpp
-// Forward Declare variables when they are defined after where they are used or in another file
+// Forward Declare functions when they are defined after where they are used or in another file
 // "" hints at user defined, <> hints at a downloaded file, library, etc.
-// If an included files have their own defines, they will be inherited here as well, DON'T RELY ON THIS
+// If included files have their own defines, they will be inherited here as well, DON'T RELY ON THIS
+// Do NOT use the 'using' directive, increases risk of name space collisions
 
 #define version 1.1 // First run through, section 1
 // #undef version // undefine version macro
@@ -18,12 +19,9 @@
 // One Definition Rule: different variables should not share a name within the same scope
 // You can define types, templates, inline functions, and inline variables again as long as all indentical
 
-// Do NOT use the 'using' directive, increases risk of name space collisions
-
-// Entry point of the program
-
 int global = 100; // Global scope, can be seen in whole file
 
+// Entry point of the program
 int main()
 {
     // :: is scope resolution, tells compiler were things are defined. std is the standard library
@@ -56,16 +54,20 @@ int main()
     basicIO();
 
     emptyFunction();
-    doubleNum(25); // Uncaught return is a temp obj, nbd
+    doubleNum(25); // Uncaught return is a temp object, no big deal
     multiplyThree(10, 20, 30);
     defaultMultiply(21);
     ignoreParam(999, 2); // Legacy call with 2 params
+    // ignoreParam(999); // This is not allowed, needs 2 parameters even with one unnamed
     // Just because a variable returns a value does not mean it must be used / caught
 
     int value = 111; // Local Scope only seen in main
-    int *reference = &value;
+    int reference = value;
 
     passBy(value, reference);
+    std::cout << "Outside the function we have: " << value << " and " << reference << std::endl;
+
+    // justStub(); // Can't just call a function that is stub only and not defined.
 
     std::cout << "\n";
     return 0; // Represents normal exit
