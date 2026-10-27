@@ -120,6 +120,8 @@ void multiDimensional()
     int arr3D[3][2][1] = {{{1}, {2}}, {{1}, {2}}, {{1}, {2}}};
 
     // needs double curly braces for every subarray.
+    std::array<int, 5> stdArray1D = {{1, 2, 3, 4, 5}};    // inner most layer can ommit double braces
+    std::array<int, 5> otherStdArray1D = {1, 2, 3, 4, 5}; // this also works
     std::array<std::array<int, 5>, 2> stdArray2D = {{{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}}};
     // I wish I was kidding that this is the form of a 3d Array
     std::array<std::array<std::array<int, 1>, 2>, 3> stdArray3D = {{{{{1}, {2}}}, {{{3}, {4}}}, {{{5}, {6}}}}};
