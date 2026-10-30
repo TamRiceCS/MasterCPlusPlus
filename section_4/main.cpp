@@ -6,7 +6,7 @@
 
 int main()
 {
-    std::cout << "\nWelcome to section 3, notes put into practice." << std::endl;
+    std::cout << "\nWelcome to section 4, notes put into practice." << std::endl;
 
     std::cout << "\n";
     makeVector();
