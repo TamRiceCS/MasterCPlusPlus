@@ -2,6 +2,7 @@
 #include <vector>
 #include <functional>
 #include "functions.h"
+#include "overloading.h"
 
 using compareShrt = bool (*)(int, int);
 
@@ -56,6 +57,33 @@ int main(int argc, char *argv[]) // can also use int argc, char** argv
     std::cout << "\n";
     lambdaInHere(20);
     lambdaInHere(30);
+
+    Fraction myFraction(1, 2, true);
+    std::cout << "\nLet's overload a bunch of operators in a class!" << std::endl;
+    std::cout << "We'll be using this simple fraction... " << myFraction << std::endl;
+
+    Fraction myInputFraction(3, 4);
+    std::cout << "Enter an integer numerator and denominator seperated by a newline:" << std::endl;
+    // std::cin >> myInputFraction;
+    std::cout << "Fraction recieved is: " << myInputFraction << std::endl;
+
+    Fraction addEm = myFraction + myInputFraction;
+    std::cout << "Overloaded adding two fractions: " << addEm << std::endl;
+
+    if (myInputFraction == myFraction)
+    {
+        std::cout << "The demo fraction and user fraction ARE equal." << std::endl;
+    }
+    else
+    {
+        std::cout << "The demo fraction and user fraction ARE NOT equal." << std::endl;
+    }
+
+    ++addEm;
+    std::cout << "++Fraction overloaded: " << addEm++ << std::endl;
+    std::cout << "Fraction++ overloaded:" << addEm << std::endl;
+
+    std::cout << "Now has a defined way to convert to double: " << addEm + (double)1.24 << std::endl;
 
     return 0;
 }
